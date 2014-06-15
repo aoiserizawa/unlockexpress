@@ -5,5 +5,5 @@ module.exports = function(app){
     // define routes
 
     app.use('/', routes);
-    app.use('/users', users);
+    app.use('/home', users);
 };

@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbr   = require('express3-handlebars'); // "express3-handlebars"
 
+
 //how to call a configuration file
 //var aoiConfig = require('./aoi.json');
 //console.log(aoiConfig.development.db_host);
