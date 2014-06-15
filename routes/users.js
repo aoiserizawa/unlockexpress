@@ -11,6 +11,10 @@ app.namespace('/home', function (){
       res.send('respond with a resource');
     });
 
+    router.get('/land', function(req, res) {
+      res.send('this is working master, well done');
+    });
+
 });
 
 module.exports = router;
