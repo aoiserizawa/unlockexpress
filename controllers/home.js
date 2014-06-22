@@ -3,5 +3,8 @@ exports.index = function(req, res){
 };
 
 exports.something = function(req, res){
+
+        
+
         res.render('home', { title: 'Express' , data: 'tang ina gumana!!'});
 };

@@ -6,13 +6,10 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var exphbr   = require('express3-handlebars'); // "express3-handlebars"
 
-
-//how to call a configuration file
-//var aoiConfig = require('./aoi.json');
-//console.log(aoiConfig.development.db_host);
-
 var app = express();
 
+var server = require('http').createServer(app),
+io = require('socket.io').listen(server);
 // Pass the Express instance to the routes module
 var routes = require('./routes/main')(app);
 
@@ -28,6 +25,8 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+server.listen(3000);
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,3 +61,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
