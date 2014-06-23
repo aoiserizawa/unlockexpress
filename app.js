@@ -10,6 +10,7 @@ var app = express();
 
 var server = require('http').createServer(app),
 io = require('socket.io').listen(server);
+
 // Pass the Express instance to the routes module
 var routes = require('./routes/main')(app);
 
@@ -25,8 +26,14 @@ app.use(bodyParser.urlencoded());
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//socket io recieving message
+io.sockets.on('connection', function(socket){
 
-server.listen(3000);
+    socket.on('changeText', function(data){
+        io.sockets.emit('newText', data);
+
+    });
+});
 
 /// catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -62,3 +69,4 @@ app.use(function(err, req, res, next) {
 
 module.exports = app;
 
+server.listen(3000);
