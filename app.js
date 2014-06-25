@@ -28,9 +28,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 //socket io recieving message
 io.sockets.on('connection', function(socket){
+    console.log('user connected');
+    //receiver of message 
+    socket.on('sendMessage', function(data){
 
-    socket.on('changeText', function(data){
-        io.sockets.emit('newText', data);
+        //transporter of message to view
+        io.sockets.emit('showMessage', data);
 
     });
 });
@@ -45,7 +48,7 @@ app.use(function(req, res, next) {
 /// error handlers
 
 // development error handler
-// will print stacktrace
+// will print stacktrace 
 if (app.get('env') === 'development') {
     app.use(function(err, req, res, next) {
         res.status(err.status || 500);
